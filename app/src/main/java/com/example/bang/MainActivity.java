@@ -2,6 +2,7 @@ package com.example.bang;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,50 +50,49 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void shop(View view) {
-        mPlayer = MediaPlayer.create(this, R.raw.shop);
+    private void play(Context context, int resid){
+        beforePlayerInit();
+        mPlayer = MediaPlayer.create(context, resid);
         afterPlay();
+    }
+
+    public void shop(View view) {
+        play(this, R.raw.shop);
+
     }
 
     public void gatling(View view) {
-        mPlayer = MediaPlayer.create(this, R.raw.gatling);
-        afterPlay();
+        play(this, R.raw.gatling);
+
     }
 
     public void indians(View view) {
-        mPlayer = MediaPlayer.create(this, R.raw.indians);
-        afterPlay();
+        play(this, R.raw.indians);
     }
 
     public void bangbangbang(View view) {
-        mPlayer = MediaPlayer.create(this, R.raw.bangbangbang);
-        afterPlay();
+        play(this, R.raw.bangbangbang);
     }
 
     public void duel(View view) {
-        mPlayer = MediaPlayer.create(this, R.raw.duel);
-        afterPlay();
+        play(this, R.raw.duel);
     }
 
     public void looser(View view) {
-        Log.d("function", "looser");
-        mPlayer = MediaPlayer.create(this, R.raw.looser);
-        afterPlay();
+        play(this, R.raw.looser);
     }
 
     public void badumtss(View view) {
-        mPlayer = MediaPlayer.create(this, R.raw.badumtss);
-        afterPlay();
+        play(this, R.raw.badumtss);
+
     }
 
     public void eralash(View view) {
-        mPlayer = MediaPlayer.create(this, R.raw.eralash);
-        afterPlay();
+        play(this, R.raw.eralash);
     }
 
     public void directed(View view) {
-        mPlayer = MediaPlayer.create(this, R.raw.directed_by_robert_b_weide_theme);
-        afterPlay();
+        play(this, R.raw.directed_by_robert_b_weide_theme);
     }
 
     public void pause(View view) {
@@ -103,18 +103,26 @@ public class MainActivity extends AppCompatActivity {
         stopPlay();
     }
 
+    private void beforePlayerInit() {
+        if (mPlayer != null) {
+//            stopPlay();
+//            mPlayer.stop();
+            mPlayer.stop();
+            mPlayer.reset();
+            mPlayer.release();
+            mPlayer = null;
+        }
+    }
+
     private void afterPlay() {
         Log.d("function", "afterplay");
-        if (mPlayer.isPlaying()) {
-            stopPlay();
-        }
-        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+/*        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 Log.d("event", "onCompletion");
                 stopPlay();
             }
-        });
+        });*/
         mPlayer.start();
     }
 
