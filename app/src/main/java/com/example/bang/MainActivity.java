@@ -58,7 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void shop(View view) {
         play(this, R.raw.shop);
+    }
 
+    public void gameMotto(View view) {
+        play(this, R.raw.game_motto);
     }
 
     public void gatling(View view) {
@@ -84,7 +87,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void badumtss(View view) {
         play(this, R.raw.badumtss);
+    }
 
+    public void aplodismenty(View view) {
+        play(this, R.raw.aplodismenty);
     }
 
     public void eralash(View view) {
